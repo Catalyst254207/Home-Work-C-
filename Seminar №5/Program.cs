@@ -32,35 +32,35 @@
 
 // Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
 
-// int[] numbers = new int[10];
-// // Создаем массив с количеством элементов 10.
-// int[] NewRandomArray(int [] numbers, int min, int max){
+int[] numbers = new int[10];
+// Создаем массив с количеством элементов 10.
+int[] NewRandomArray(int [] numbers, int min, int max){
 
-//     for(int i = 0; i < numbers.Length; i++){
-//         numbers[i] = new Random().Next(min, max+1);
-//     }
-//     return numbers;
-// }
-// // Создаем функцию, которая наполнит массив рандомными числами.
+    for(int i = 0; i < numbers.Length; i++){
+        numbers[i] = new Random().Next(min, max+1);
+    }
+    return numbers;
+}
+// Создаем функцию, которая наполнит массив рандомными числами.
 
-// void PrintArray(int[] numbers){
-//     for(int i = 0; i < numbers.Length; i++){
-//         Console.Write($"{numbers[i]} ");
-//     }
-//     Console.WriteLine();
-// }
-// // Создаем функцию, которая выведет пользователю массив.
-// void EvenIndex(int[] numbers){
-// int sum = 0;
-// for(int i = 0; i < numbers.Length; i++){
-//     if(i % 2 != 0) sum = sum + numbers[i];
-// }
-// Console.WriteLine($"The sum of the array elements with an odd index is {sum}.");
-// }
-// // Создаем функцию, которая будет проверять на четность индекс элемента массива, а потом складывать эти элементы.
-// NewRandomArray(numbers, 1, 2);
-// PrintArray(numbers);
-// EvenIndex(numbers);
+void PrintArray(int[] numbers){
+    for(int i = 0; i < numbers.Length; i++){
+        Console.Write($"{numbers[i]} ");
+    }
+    Console.WriteLine();
+}
+// Создаем функцию, которая выведет пользователю массив.
+void EvenIndex(int[] numbers){
+int sum = 0;
+for(int i = 0; i < numbers.Length; i++){
+    if(i % 2 != 0) sum = sum + numbers[i];
+}
+Console.WriteLine($"The sum of the array elements with an odd index is {sum}.");
+}
+// Создаем функцию, которая будет проверять на четность индекс элемента массива, а потом складывать эти элементы.
+NewRandomArray(numbers, 1, 5);
+PrintArray(numbers);
+EvenIndex(numbers);
 // Даем вводные данные и запускаем все функции.
 
 // Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
