@@ -1,91 +1,74 @@
-// Напишите программу, которая перевернет одномерный массив (последний элемент будет на первом месте
-// а первый - на последнем и т.д.)
+// // Задача 41. Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
 
-// int[] ReverseMass(int[] array){
-//     int temp = 0;
-//     for(int i = 0; i < array.Length / 2;i++){
-//         temp = array[i];
-//         array[i] = array[array.Length - 1 -i];
-//         array[array.Length-1-i] = temp;
-//     }
-//     return array;
+// Console.Write("Input M: ");
+// int m = Convert.ToInt32(Console.ReadLine());
+// int[] numbers = new int[m];
+// // Запрашиваем количество чисел и создаем массив.
+// void InputNumbers(int m){
+// for (int i = 0; i < m; i++){
+//     Console.Write($"Input {i+1} number: ");
+//     numbers[i] = Convert.ToInt32(Console.ReadLine());
+//   }
 // }
-// int[] array = {1, 3, 6, 7, 2, 0};
-// int[] revMas = ReverseMass(array);
-// for(int i = 0; i < revMas.Length; i++){
-//     Console.Write(revMas[i]+" ");
+// // Создаем функцию с циклом для запроса всех чисел.
+// int Count(int[] numbers)
+// {
+//   int count = 0;
+//   for (int i = 0; i < numbers.Length; i++)
+//   {
+//     if(numbers[i] > 0 ) count += 1; 
+//   }
+//   return count;
 // }
+// // Создаем функцию, которая будет проверять числа, на предмет того, больше ли они 0.
 
-// 2 вариант решения
+// InputNumbers(m);
 
-// int[] ReverseMass(int[] array){
-//     int temp = 0;
-//     for(int i = 0, j = array.Length - 1; i < j; i++, j--){
-//         temp = array[i];
-//         array[i] = array[j];
-//         array[j] = temp;
-//     }
-//     return array;
-// }
-// int[] array = {1, 3, 6, 7, 2, 0};
-// int[] revMas = ReverseMass(array);
-// for(int i = 0; i < revMas.Length; i++){
-//     Console.Write(revMas[i]+" ");
-// }
-
-
-int Comparison(int[] massiveNumbers)
-{
-  int count = 0;
-  for (int i = 0; i < massiveNumbers.Length; i++)
-  {
-    if(massiveNumbers[i] > 0 ) count += 1; 
-  }
-  return count;
-}
-
-InputNumbers(m);
-
-Console.WriteLine($"Введено чисел больше 0: {Comparison(massiveNumbers)} ");
+// Console.WriteLine($"Numbers greater than zero: {Count(numbers)} ");
+// // Запускаем функции и выводим ответ пользователю.
 
 // Задача 43. Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-// b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; 5,5)
 
-
-Console.WriteLine($"\nЗадача 43.  Найти точку пересечения двух прямых \n");
-
-// Теорема о неравенстве треугольника - каждая сторона треугольника меньше суммы двух других сторон.
-
-// void Triangle(int num1, int num2, int num3){
-// if (num1<num2+num3 && num2<num1+num3 && num3<num1+num2) Console.WriteLine("Answer ia Yes, it is.");
-// else Console.WriteLine("Answer is No, it is.");
-// }
-
-// Console.WriteLine("Input num1: ");
-// int num1 = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine("Input num2: ");
-// int num2 = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine("Input num3: ");
-// int num3 = Convert.ToInt32(Console.ReadLine());
-// Triangle(num1, num2, num3);
-
-void OutputResponse(double[,] coeff)
+double[,] coeff = new double[2, 2];
+double[] crossPoint = new double[2];
+// Создаем двумерный массив.
+void InputCoeff(){
+  for (int i = 0; i < coeff.GetLength(0); i++)
+  {
+    Console.Write($"Input coeff {i+1} for the equation (y = k * x + b):\n");
+    for (int j = 0; j < coeff.GetLength(1); j++)
+    {
+      if(j==0) Console.Write($"Input coeff  k: ");
+      else Console.Write($"Input coeff  b: ");
+      coeff[i,j] = Convert.ToInt32(Console.ReadLine());
+    }
+  }
+}
+// Создаем функцию по запросу входных данных у пользователя.
+double[] Decision(double[,] coeff)
+{
+  crossPoint[0] = (coeff[1,1] - coeff[0,1]) / (coeff[0,0] - coeff[1,0]);
+  crossPoint[1] = crossPoint[0] * coeff[0,0] + coeff[0,1];
+  return crossPoint;
+}
+// Создаем функцию, которая выполняет вычесления с коэфициентами.
+void Intersection(double[,] coeff)
 {
   if (coeff[0,0] == coeff[1,0] && coeff[0,1] == coeff[1,1]) 
   {
-    Console.Write($"\nПрямые совпадают");
+    Console.Write("Lines coincide");
   }
   else if (coeff[0,0] == coeff[1,0] && coeff[0,1] != coeff[1,1]) 
   {
-    Console.Write($"\nПрямые параллельны");
+    Console.Write("Straight lines are parallel");
   }
   else 
   {
     Decision(coeff);
-    Console.Write($"\nТочка пересечения прямых: ({crossPoint[0]}, {crossPoint[1]})");
+    Console.Write("Зoint of intersection: ({crossPoint[0]}, {crossPoint[1]})");
   }
 }
-
-InputCoefficients();
-OutputResponse(coeff);
-
+// Создаем функцию по опрделению и выводу данных пользователю.
+InputCoeff();
+Intersection(coeff);
+// Запускаем все функции.
